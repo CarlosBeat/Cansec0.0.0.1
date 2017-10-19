@@ -1,0 +1,46 @@
+drop databses pinturas;
+create database pinturas;
+use pinturas;
+
+create table altaPintura(
+idpinturas int auto_increment,
+marca varchar(45),
+presentacion varchar(45),
+color varchar(45),
+tipoPintura varchar(45),
+cantidad varchar(45),
+precio double,
+fechaVencimiento date,
+primary key(idpinturas));
+
+create table altaVendedor(
+idvendedor int auto_increment,
+nombre varchar(30),
+apellidoPaterno varchar(15),
+apellidoMaterno varchar(15),
+direccion varchar(30),
+numTelefonico int,
+fechaNacimiento date,
+RFC varchar(30),
+numSegSoc int, 
+primary key(idvendedor));
+
+create table altaCliente(
+idcliente int auto_increment,
+nombre varchar(30),
+apellidoPaterno varchar(15),
+apellidoMaterno varchar(15),
+numTelefonico int,
+RFC varchar(30),);
+
+create table altaVenta(
+idventa int auto_increment,
+fechaVenta date,
+precioVenta double,
+idvendedor int,
+idcliente int,
+idpinturas int,
+primary key(idventa),
+foreign key(idvendedor)references altaVendedor(idvendedor),
+foreign key(idcliente)references altaCliente(idcliente),
+foreign key(idpinturas)references altaPinntura(idpinturas));
